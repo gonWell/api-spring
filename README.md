@@ -4,7 +4,7 @@
 Esta aplicação é uma API RESTful desenvolvida em Java usando o framework Spring Boot. Ela implementa autenticação com JWT, gerenciamento de banco de dados com Hibernate e Flyway, e documentação interativa usando Swagger. A API está configurada para operar na porta **8082**.
 
 ## **Requisitos**
-- **Java 17** ou superior.
+- **Java 21** ou superior.
 - **Maven** para gerenciamento de dependências.
 - **MySQL** como banco de dados.
 - Ferramenta de cliente HTTP (como **Postman**) para testes (opcional).
@@ -42,7 +42,7 @@ Esta aplicação é uma API RESTful desenvolvida em Java usando o framework Spri
        driver-class-name: com.mysql.cj.jdbc.Driver
      jpa:
        hibernate:
-         ddl-auto: validate
+         ddl-auto: update
        properties:
          hibernate:
            dialect: org.hibernate.dialect.MySQL8Dialect
@@ -89,13 +89,7 @@ A documentação interativa da API está disponível no Swagger. Acesse pelo nav
 
 ### **1. Gerar um Token JWT**
 Utilize o endpoint de login para autenticação e obtenha o token:
-- **Endpoint:** `POST /api/auth/login`
-- **Corpo da Requisição:**
-  ```json
-  {
-    "cpf": "12345678901"
-  }
-  ```
+- **Endpoint:** `POST /api/auth/login?cpf=12345678901`
 - O token será retornado no corpo da resposta.
 
 ### **2. Usar o Token JWT**
@@ -121,6 +115,7 @@ Inclua o token no cabeçalho de todas as requisições autenticadas:
        "nome": "João da Silva",
        "cpf": "98765432109",
        "dataNascimento": "1990-01-01"
+        "endereco:...
      }
      ```
 
@@ -159,15 +154,4 @@ src/
 
 ---
 
-## **Contribuições**
-
-1. Faça um fork do repositório.
-2. Crie uma branch para sua feature:
-   ```bash
-   git checkout -b minha-feature
-   ```
-3. Envie o PR.
-
----
-
-Desenvolvido por [Sua Equipe ou Nome]. 🚀
+Desenvolvido por Wellington Barbosa. 🚀
