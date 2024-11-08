@@ -1,7 +1,7 @@
 # Configurações comuns a todos os perfis
 spring: 
   jpa:
-    show-sql: true
+    show-sql: false
     properties:
       hibernate.format_sql: true
   profiles:
@@ -40,5 +40,6 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create-drop
+    show-sql: true
   flyway:
     enabled: false

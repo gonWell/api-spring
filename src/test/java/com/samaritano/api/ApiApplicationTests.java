@@ -10,7 +10,6 @@ import org.springframework.test.context.ActiveProfiles;
 class ApiApplicationTests {
 
 	@Test
-    @Disabled("Desativado")
 	void contextLoads() {
 	}
 
