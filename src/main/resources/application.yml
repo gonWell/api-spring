@@ -1,0 +1,44 @@
+# Configurações comuns a todos os perfis
+spring: 
+  jpa:
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
+  profiles:
+    default: dev
+server:
+  port: 8082
+
+# "dev"
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    url: jdbc:mysql://192.168.15.100:3306/api
+    username: api
+    password: '@sd12345'
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hibernate:
+      ddl-auto: update
+  flyway:
+    enabled: true  # Habilita o Flyway
+    locations: classpath:db/migration
+
+# "test"
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+  flyway:
+    enabled: false
