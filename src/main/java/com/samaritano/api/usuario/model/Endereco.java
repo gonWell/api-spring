@@ -1,25 +1,34 @@
 package com.samaritano.api.usuario.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.Data;
 
 @Data
 public class Endereco {
-	
+
 	public Endereco() {
-		
+
 	}
 
-    private String rua;
+	@JsonProperty(defaultValue = "Bonfiglio")
+	private String rua;
 
-    private Integer numero;
+	@JsonProperty(defaultValue = "15")
+	private Integer numero;
 
-    private String complemento;
+	@JsonProperty(defaultValue = "")
+	private String complemento;
 
-    private String bairro;
+	@JsonProperty(defaultValue = "Bela Vista")
+	private String bairro;
 
-    private String cidade;
+	@JsonProperty(defaultValue = "São Paulo")
+	private String cidade;
 
-    private String estado;
+	@JsonProperty(defaultValue = "SP")
+	private String estado;
 
-    private String cep;
+	@JsonProperty(defaultValue = "13188000")
+	private String cep;
 }

@@ -21,7 +21,8 @@ import lombok.Data;
 public class Usuario {
 	
 	public Usuario() {
-		
+		dataCriacao = LocalDateTime.now();
+		status = StatusRegistro.ATIVO;
 	}
 
 	@Id
@@ -41,27 +42,21 @@ public class Usuario {
 	@Enumerated(EnumType.STRING)
 	private StatusRegistro status;
 
-	@JsonIgnore
 	@Column(name = "data_criacao", nullable = false, updatable = false)
 	private LocalDateTime dataCriacao;
 
-	@JsonIgnore
 	@Column(name = "usuario_criacao", nullable = false, updatable = false)
 	private String usuarioCriacao;
 
-	@JsonIgnore
 	@Column(name = "data_atualizacao")
 	private LocalDateTime dataAtualizacao;
 
-	@JsonIgnore
 	@Column(name = "usuario_atualizacao")
 	private String usuarioAtualizacao;
 
-	@JsonIgnore
 	@Column(name = "data_remocao")
 	private LocalDateTime dataRemocao;
 
-	@JsonIgnore
 	@Column(name = "usuario_remocao")
 	private String usuarioRemocao;
 }

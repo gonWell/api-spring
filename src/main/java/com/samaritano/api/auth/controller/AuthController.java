@@ -26,7 +26,7 @@ public class AuthController {
     	
         if (usuarioOpt.isPresent()) {
             String token = tokenProvider.generateToken(usuarioOpt.get().getCpf());
-            return ResponseEntity.ok("Bearer " + token);
+            return ResponseEntity.ok(token);
         }
         
         return ResponseEntity.status(401).body("Credenciais inválidas");

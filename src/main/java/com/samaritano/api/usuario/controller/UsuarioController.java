@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.samaritano.api.usuario.dto.UsuarioDTO;
 import com.samaritano.api.usuario.model.Usuario;
 import com.samaritano.api.usuario.service.UsuarioService;
 
@@ -30,6 +31,11 @@ public class UsuarioController {
     public List<Usuario> listarTodos() {
         return usuarioService.findAll();
     }
+    
+    @GetMapping("/ativos")
+    public List<Usuario> listarTodosAtivos() {
+        return usuarioService.findAllActive();
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Usuario> buscarPorId(@PathVariable Long id) {
@@ -44,13 +50,13 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<Usuario> criarUsuario(@RequestBody Usuario usuario) {
+    public ResponseEntity<Usuario> criarUsuario(@RequestBody UsuarioDTO usuario) {
         Usuario novoUsuario = usuarioService.create(usuario);
         return ResponseEntity.ok(novoUsuario);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Usuario> atualizarUsuario(@PathVariable Long id, @RequestBody Usuario usuario) {
+    public ResponseEntity<Usuario> atualizarUsuario(@PathVariable Long id, @RequestBody UsuarioDTO usuario) {
         Usuario usuarioAtualizado = usuarioService.update(id, usuario);
         return ResponseEntity.ok(usuarioAtualizado);
     }

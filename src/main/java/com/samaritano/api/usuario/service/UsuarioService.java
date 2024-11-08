@@ -1,5 +1,6 @@
 package com.samaritano.api.usuario.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.samaritano.api.configs.SecurityUtils;
+import com.samaritano.api.usuario.dto.UsuarioDTO;
 import com.samaritano.api.usuario.model.StatusRegistro;
 import com.samaritano.api.usuario.model.Usuario;
 import com.samaritano.api.usuario.repository.UsuarioRepository;
@@ -20,6 +22,10 @@ public class UsuarioService {
 	public List<Usuario> findAll() {
 		return usuarioRepository.findAll();
 	}
+	
+	public List<Usuario> findAllActive() {
+		return usuarioRepository.findAllAtivosByStatus(StatusRegistro.ATIVO);
+	}
 
 	public Usuario findById(Long id) {
 		return usuarioRepository.findById(id)
@@ -31,25 +37,26 @@ public class UsuarioService {
 				.orElseThrow(() -> new RuntimeException("Usuário não encontrado com o CPF: " + cpf));
 	}
 
-	public Usuario create(Usuario usuario) {
+	public Usuario create(UsuarioDTO usuarioDTO) {
 		String usuarioLogado = SecurityUtils.getAuthenticatedUsername();
 
-		usuario.setUsuarioCriacao(usuarioLogado);
+		Usuario usuario = usuarioDTO.create(usuarioLogado);
 
 		return usuarioRepository.save(usuario);
 	}
 
-	public Usuario update(Long id, Usuario usuarioAtualizado) {
+	public Usuario update(Long id, UsuarioDTO usuarioAtualizado) {
 		String usuarioLogado = SecurityUtils.getAuthenticatedUsername();
 
 		Usuario usuarioExistente = findById(id);
+		
+		if(!usuarioExistente.getCpf().equals(usuarioAtualizado.getCpf()))
+			throw new RuntimeException("Não é possivel alterar o CPF");
 
+		usuarioExistente.setDataAtualizacao(LocalDateTime.now());
 		usuarioExistente.setUsuarioAtualizacao(usuarioLogado);
-		usuarioExistente.setNome(usuarioAtualizado.getNome());
-		usuarioExistente.setCpf(usuarioAtualizado.getCpf());
-		usuarioExistente.setDataNascimento(usuarioAtualizado.getDataNascimento());
-		usuarioExistente.setEndereco(usuarioAtualizado.getEndereco());
-		usuarioExistente.setStatus(usuarioAtualizado.getStatus());
+		
+		usuarioExistente = usuarioAtualizado.parse(usuarioExistente);
 
 		return usuarioRepository.save(usuarioExistente);
 	}
@@ -58,6 +65,9 @@ public class UsuarioService {
 		String usuarioLogado = SecurityUtils.getAuthenticatedUsername();
 
 		Usuario usuario = findById(id);
+		
+		if(usuario.getStatus().equals(StatusRegistro.REMOVIDO))
+			throw new RuntimeException("Este usuário ja foi removido!");
 		
 		usuario.setUsuarioRemocao(usuarioLogado);
 		usuario.setStatus(StatusRegistro.REMOVIDO);
