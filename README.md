@@ -1,4 +1,4 @@
-# **README - Aplicação API Samaritan**
+# **README - Aplicação API Sirio Libanes**
 
 ## **Descrição**
 Esta aplicação é uma API RESTful desenvolvida em Java usando o framework Spring Boot. Ela implementa autenticação com JWT, gerenciamento de banco de dados com Hibernate e Flyway, e documentação interativa usando Swagger. A API está configurada para operar na porta **8082**.
@@ -26,7 +26,7 @@ Esta aplicação é uma API RESTful desenvolvida em Java usando o framework Spri
 1. **Criação do Banco de Dados:**
    Certifique-se de que o MySQL está rodando e crie um banco de dados para a aplicação.
    ```sql
-   CREATE DATABASE samaritano_api;
+   CREATE DATABASE sirio_api;
    ```
 
 2. **Configuração do Banco de Dados:**
@@ -36,7 +36,7 @@ Esta aplicação é uma API RESTful desenvolvida em Java usando o framework Spri
    ```yaml
    spring:
      datasource:
-       url: jdbc:mysql://localhost:3306/samaritano_api
+       url: jdbc:mysql://localhost:3306/sirio_api
        username: seu_usuario
        password: sua_senha
        driver-class-name: com.mysql.cj.jdbc.Driver
@@ -60,8 +60,8 @@ Esta aplicação é uma API RESTful desenvolvida em Java usando o framework Spri
 
 1. Clone o repositório do projeto:
    ```bash
-   git clone https://github.com/seu-repositorio/api-samaritano.git
-   cd api-samaritano
+   git clone [https://github.com/gonWell/api-spring.git](https://github.com/gonWell/api-spring.git)
+   cd api-spring
    ```
 
 2. Compile e instale as dependências:
@@ -129,7 +129,7 @@ Inclua o token no cabeçalho de todas as requisições autenticadas:
 src/
 ├── main/
 │   ├── java/
-│   │   └── com.samaritano.api/
+│   │   └── com.sirio.api/
 │   │       ├── auth/           # Autenticação com JWT
 │   │       ├── configs/        # Configurações (JWT, segurança, etc.)
 │   │       ├── usuario/        # Recursos de usuários
@@ -140,7 +140,7 @@ src/
 │       └── static/             # Recursos estáticos (Swagger UI)
 └── test/
     └── java/
-        └── com.samaritano.api/ # Testes da aplicação
+        └── com.sirio.api/ # Testes da aplicação
 ```
 
 ---
