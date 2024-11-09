@@ -24,7 +24,7 @@ INSERT INTO usuarios (
     rua, numero, complemento, bairro, cidade, estado, cep
 ) VALUES (
     '12345678901',
-    'Samaritano',
+    'Sirio Libanes',
     '1980-01-01 00:00:00',
     'ATIVO',
     NOW(),
