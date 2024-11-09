@@ -1,4 +1,4 @@
-package com.samaritano.api;
+package com.sirio.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
