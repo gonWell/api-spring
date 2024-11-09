@@ -1,4 +1,4 @@
-package com.samaritano.api;
+package com.sirio.api;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
