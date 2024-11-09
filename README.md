@@ -1,4 +1,4 @@
-# **README - Aplicação API Samaritan**
+# **README - Aplicação API Sirio Libanes**
 
 ## **Descrição**
 Esta aplicação é uma API RESTful desenvolvida em Java usando o framework Spring Boot. Ela implementa autenticação com JWT, gerenciamento de banco de dados com Hibernate e Flyway, e documentação interativa usando Swagger. A API está configurada para operar na porta **8082**.
